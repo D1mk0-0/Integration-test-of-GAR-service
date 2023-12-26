@@ -1,5 +1,8 @@
 import requests
 import pytest
+import re
+
+from methods.base_method import BaseMethod
 
 #from spellchecker import SpellChecker <-- Для проверки орфографии (Пока неактивно)
 
@@ -51,6 +54,8 @@ def test_should_be_api_address_contract(address):
     assert hint_quality_index >= 2, \
         f'Для запроса: "{address}" - слишком низкий индекс качества подсказки = {hint_quality_index}. ' \
         f'Была возвращена подсказка: {response_address}'
+    #assert response_address == re.compile(r"г\s*(\w+),\s*ул\s*(\w+),\s*д\.\s*(\d+)\s*кв\s*(\d+)"), \
+    #    f'{response_address} не соответствует формату ответа.'
 
 if __name__ == "__main__":
     pytest.main([__file__])
