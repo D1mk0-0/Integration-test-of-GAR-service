@@ -1,8 +1,6 @@
-from .base_method import BaseMethod
-
-class ConnectMethod(BaseMethod):
+class ConnectMethod():
     BASE_URL = 'http://gar.gblinov.ru:18181'
     GET_URL_ADDRESS = '/v1/Addresses'
 
-    #Красная ссылка
+    # Красная ссылка
     GET_URL_ID = '/v1/Addresses/{id}'
