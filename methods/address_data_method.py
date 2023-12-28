@@ -1,5 +1,6 @@
 import json
 
+import pytest
 
 class AddressDataMethod():
 
@@ -9,7 +10,7 @@ class AddressDataMethod():
         with open(self.ADDRESS_DATA_FILE_PATH, 'r', encoding="utf-8") as file:
             data = json.load(file)
             keys = list(data.keys())
-            print(keys)
             return keys
+
 
 
