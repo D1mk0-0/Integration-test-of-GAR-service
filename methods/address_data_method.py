@@ -1,7 +1,6 @@
 import json
 
 class AddressDataMethod():
-
     def __init__(self, line):
         self.line = line
 
@@ -26,6 +25,14 @@ class AddressDataMethod():
     def suit(self, line):
         print(self.get_address_response(line))
         print(self.get_address_hint(line))
+
+    def len_line_json(self):
+        with open('data/address_data.json', 'r', encoding="UTF-8") as file:
+            data = json.load(file)
+            self.num_lines = len(data)
+            return self.num_lines
+
+    ADDRESS = []
 
 
 
