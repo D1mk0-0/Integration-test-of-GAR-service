@@ -1,16 +1,31 @@
 import json
 
-import pytest
-
 class AddressDataMethod():
 
-    ADDRESS_DATA_FILE_PATH = './data/address_data.json'
+    def __init__(self, line):
+        self.line = line
 
-    def get_json_keys(self):
-        with open(self.ADDRESS_DATA_FILE_PATH, 'r', encoding="utf-8") as file:
+    # Путь к json указан относительно места вызова этой функции (test_gar_api_contract.py)
+    def get_json_line(self, line):
+        with open('data/address_data.json', 'r', encoding="UTF-8") as file:
             data = json.load(file)
-            keys = list(data.keys())
-            return keys
+            keys_list = list(data.keys())
+            value_list = list(data.values())
+            return keys_list[line], value_list[line]
+
+    def get_address_response(self, line):
+        json_line = self.get_json_line(line)
+        address_response = json_line[0]
+        return address_response
+
+    def get_address_hint(self, line):
+        json_line = self.get_json_line(line)
+        address_hint = json_line[1]
+        return address_hint
+
+    def suit(self, line):
+        print(self.get_address_response(line))
+        print(self.get_address_hint(line))
 
 
 

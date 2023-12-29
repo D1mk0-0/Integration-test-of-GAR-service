@@ -27,9 +27,3 @@ class BaseMethod():
         assert first_hint_quality_index >= 2, \
             f'Для запроса: "{self.address}" - слишком низкий индекс качества первой подсказки = {first_hint_quality_index}. ' \
             f'Была возвращена подсказка: {response_first_hint}'
-
-    #def should_be_accordance_with_contract(self):
-
-
-# assert response_address == re.compile(r"г\s*(\w+),\s*ул\s*(\w+),\s*д\.\s*(\d+)\s*кв\s*(\d+)"), \
-#    f'{response_address} не соответствует формату ответа.'
