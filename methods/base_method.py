@@ -1,11 +1,13 @@
 import requests
-import json
 
 from .connect_method import ConnectMethod
 
 class BaseMethod():
-    def __init__(self, address):
-        self.address = address
+    #def __init__(self, address):
+    #    self.address = address
+
+    def __init__(self, prepared_data):
+        self.prepared_data = prepared_data
 
     def send_get_request_with_address(self, address, limit):
         payload = {'Name': f'{address}', 'Limit': f'{limit}'}
@@ -13,7 +15,7 @@ class BaseMethod():
         return self.response
 
     def should_be_status_code_200(self):
-        assert self.response.status_code == 200, \
+        assert self.prepared_data.status_code == 200, \
             f'Статус ответа не в порядке :{self.response.status_code}'
 
     def count_matching_items(self, list1, list2):
