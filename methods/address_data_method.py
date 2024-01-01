@@ -3,8 +3,8 @@ import json
 
 class AddressDataMethod():
 
-    def __init__(self, line):
-        self.get_json_keys(line)
+    def __init__(self, prepared_data):
+        self.prepared_data = prepared_data
 
     # Путь к json указан относительно места вызова этой функции (test_gar_api_contract.py)
     def get_json_line(self, line):

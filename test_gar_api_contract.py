@@ -7,8 +7,12 @@ from methods.contract_method import ContractMethod
 #from spellchecker import SpellChecker <-- Для проверки орфографии ответов (Пока неактивно)
 
 def test_correct_answer_structure(prepared_data):
+    print('\nСтарт теста структуры корректного ответа..')
     answer_structure = BaseMethod(prepared_data)
     answer_structure.should_be_status_code_200()
+    answer_structure = ContractMethod(prepared_data)
+    answer_structure.validate_response_is_json()
+    answer_structure.validation_name_field_in_response()
 
 
 
@@ -29,3 +33,5 @@ class TestGarApiContract():
 
     if __name__ == "__main__":
         pytest.main([__file__])
+
+
