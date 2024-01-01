@@ -34,4 +34,5 @@ class InspectedAddressValue():
         }
     }
 
+    NON_EXISTENT_ADDRESS = 'г. Москва, ул. Вайнера'
 
