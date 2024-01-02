@@ -3,7 +3,8 @@ import random
 
 from methods.base_method import BaseMethod as BM
 from methods.contract_method import ContractMethod as CM
-from data.negative_data import NegativeData as AD
+from data.negative_data import NegativeData as ND
+from data.inspected_data import InspectedAddressValue as IAV
 
 @pytest.mark.answer_structure
 def test_should_be_correct_answer_structure(prepared_data):
@@ -12,7 +13,7 @@ def test_should_be_correct_answer_structure(prepared_data):
     answer_structure.should_be_status_code_200()
     answer_structure = CM(prepared_data)
     answer_structure.validate_response_is_json()
-    answer_structure.validation_json_in_response()
+    answer_structure.validation_json_in_response(IAV.INSPECTING_ADDRESS_PATTERN)
     print('Завершение теста.')
 
 @pytest.mark.error_404
@@ -23,7 +24,7 @@ def test_should_be_404_error(prepared_data_404):
     print('Завершение теста.')
 
 @pytest.mark.error_400
-@pytest.mark.parametrize('name, limit', AD.negative_data(AD))
+@pytest.mark.parametrize('name, limit', ND.negative_data(ND))
 def test_should_be_400_error(api_client, name, limit):
     print('\nСтарт теста ошибки 400..')
     print(f'Вариант неправильного запроса "name" : {name}. "limit" : {limit}')
