@@ -26,17 +26,5 @@ class BaseMethod():
             f'Статус ответа не в порядке :{self.prepared_data.status_code}. В этом тесте ожидалось 404'
         print('Статус ответа в порядке 404 (в этом тесте так и должно быть)')
 
-    def count_matching_items(self, list1, list2):
-        return len(set(list1).intersection(list2))
-
-    def should_be_quality_index(self, request):
-        response_json = request.json()
-        response_first_hint = response_json[0]['name']['default']
-        list_address = request.split()
-        list_response_address = response_first_hint.split()
-        first_hint_quality_index = self.count_matching_items(list_address, list_response_address)
-        assert first_hint_quality_index >= 2, \
-            f'Для запроса: "{request}" - слишком низкий индекс качества первой подсказки = {first_hint_quality_index}. ' \
-            f'Была возвращена подсказка: {response_first_hint}'
 
 
