@@ -2,7 +2,6 @@ import requests
 
 from .connect_method import ConnectMethod as CM
 
-
 class BaseMethod():
     def __init__(self, prepared_data):
         self.prepared_data = prepared_data

@@ -3,9 +3,7 @@ import random
 
 from methods.base_method import BaseMethod as BM
 from methods.contract_method import ContractMethod as CM
-from data.address_data import AddressData as AD
-
-#from spellchecker import SpellChecker <-- Для проверки орфографии ответов (Пока неактивно)
+from data.negative_data import NegativeData as AD
 
 @pytest.mark.answer_structure
 def test_should_be_correct_answer_structure(prepared_data):

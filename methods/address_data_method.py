@@ -5,36 +5,18 @@ class AddressDataMethod():
     def __init__(self, prepared_data):
         self.prepared_data = prepared_data
 
-    # Путь к json указан относительно места вызова этой функции (test_gar_api_contract.py)
-    def get_json_line(self, line):
-        with open('data/address_data.json', 'r', encoding="UTF-8") as file:
+    def get_key_value_pairs_from_json(self, json_file):
+        with open(json_file, 'r', encoding="UTF-8") as file:
             data = json.load(file)
-            keys_list = list(data.keys())
-            value_list = list(data.values())
-            return keys_list[line], value_list[line]
+            key_value_pairs = [(key, value) for key, value in data.items()]
+            return key_value_pairs
 
-    def get_address_response(self, line):
-        json_line = self.get_json_line(line)
-        self.address_response = json_line[0]
-        return self.address_response
-
-    def get_address_hint(self, line):
-        json_line = self.get_json_line(line)
-        self.address_hint = json_line[1]
-        return self.address_hint
-
-    def suit(self, line):
-        print(self.get_address_response(line))
-        print(self.get_address_hint(line))
-
-    def len_line_json(self):
-        with open('data/address_data.json', 'r', encoding="UTF-8") as file:
-            data = json.load(file)
-            self.num_lines = len(data)
-            return self.num_lines
-
-    def get_json_keys(self, line):
-        with open('data/address_data.json', 'r', encoding="UTF-8") as file:
-            data = json.load(file)
-            keys_list = list(data.keys())
-            return keys_list[line]
+    def validation_name_field_in_response(self, address_sent, address_expected):
+       data = self.prepared_data.json()
+       expected_value = list(data)[0]['name']['default']
+       assert expected_value == address_expected, \
+           '\nПервая подсказка отличается от ожидаемой:' \
+           f'\nОтправлен адресс : {address_sent}' \
+           f'\nВернулась подсказка : {expected_value}' \
+           f'\nОжидаемая подсказка : {address_expected}'
+       print('Первая подсказка возвращена верно')

@@ -23,16 +23,6 @@ class ContractMethod(BaseMethod):
             value_list = list(data.values())
             return keys_list[line], value_list[line]
 
-    #def validation_name_field_in_response(self):
-    #    data = self.prepared_data.json()
-    #    expected_value = list(data)[0]['name']['default']
-    #    assert expected_value == IAV.INSPECTING_ADDRESS_VALUE, \
-    #        '\nНеверное значение ключа "default" в ответе: ' \
-    #        f'\nОжидаемое значение: {IAV.INSPECTING_ADDRESS_VALUE}' \
-    #        f'\nФактческое значение: {expected_value}'
-    #    print('Ключ "default" в ответе заполнен верно')
-    #    #return keys_list, value_list
-
     def validation_json_in_response(self):
         data = self.prepared_data.json()
         try:

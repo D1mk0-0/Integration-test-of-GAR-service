@@ -1,4 +1,4 @@
-class AddressData():
+class NegativeData():
 
     def negative_data(self):
         return [
