@@ -29,8 +29,8 @@ def test_should_be_404_error(prepared_data_404):
 def test_should_be_400_error(api_client, name, limit):
     print('\nСтарт теста ошибки 400..')
     print(f'Вариант неправильного запроса "name" : {name}. "limit" : {limit}')
-    incorrect_requests = BM(api_client)
-    request = incorrect_requests \
+    incorrect_request = BM(api_client)
+    request = incorrect_request \
         .send_get_request_with_address(name, limit)
     incorrect_request = BM(request)
     incorrect_request.should_be_status_code_400()
@@ -40,10 +40,12 @@ def test_should_be_400_error(api_client, name, limit):
 @pytest.mark.parametrize('limit', [random.randint(1, 20) for _ in range(5)])
 def test_should_be_correct_amount_limit(limit, api_client):
     print('\nСтарт теста возвращаемого значения limit..')
-    print(f'limit в запросе установлен: {limit}')
     correct_limit = BM(api_client)
     request = correct_limit \
         .send_get_request_with_address('Москва', limit)
+    correct_limit = CM(request)
+    correct_limit.should_be_hints_equal_to_limit(limit)
+    print('Завершение теста.')
 
 
 

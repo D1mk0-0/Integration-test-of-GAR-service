@@ -1,6 +1,5 @@
 import json
 
-
 class AddressDataMethod():
 
     def __init__(self, prepared_data):

@@ -13,8 +13,8 @@ class ContractMethod(BaseMethod):
     def validate_response_is_json(self):
         json_data = self.prepared_data.json()
         assert isinstance(json_data, list), \
-            "Ответ не содержит JSON-объект"
-        print("Ответ содержит JSON-объект")
+            'Ответ не содержит JSON-объект'
+        print('Ответ содержит JSON-объект')
 
     def get_json_line(self, line):
         with open('../data/address_data.json', 'r', encoding="UTF-8") as file:
@@ -40,9 +40,22 @@ class ContractMethod(BaseMethod):
                 instance=data,
                 schema=IAV.INSPECTING_ADDRESS_PATTERN
             )
-            print("Все элементы JSON-объекта вернулись и заполнены верно")
+            print('Все элементы JSON-объекта вернулись и заполнены верно')
         except jsonschema.exceptions.ValidationError as e:
-            assert False, f"В JSON-объекте был возвращен некорректный элемент : {e}"
+            assert False, f'В JSON-объекте был возвращен некорректный элемент : {e}'
+
+    def count_name_keys(self):
+        json_response = self.prepared_data.json()
+        name_count = sum(1 for item in json_response if 'name' in item)
+        return name_count
+
+    def should_be_hints_equal_to_limit(self, limit):
+        json_response = self.prepared_data.json()
+        name_count = sum(1 for item in json_response if 'name' in item)
+        assert limit == name_count, \
+            f'Количество возвращенных подсказок ({name_count}), отличается от значения limit ({limit})'
+        print(f'Количество возвращенных подсказок ({name_count}) равно limit ({limit})')
+
 
 
 
