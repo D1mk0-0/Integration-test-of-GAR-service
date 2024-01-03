@@ -11,6 +11,11 @@ class BaseMethod():
        response = requests.get(f'{CM.BASE_URL}{CM.GET_URL_ADDRESS}', params=payload)
        return response
 
+    def send_get_request_with_id(self, id):
+        print(f'Отправлен id {id}')
+        response = requests.get(f'{CM.BASE_URL}{CM.GET_URL_ADDRESS_ID}{id}')
+        return response
+
     def should_be_status_code_200(self):
         assert self.prepared_data.status_code == 200, \
             f'Статус ответа не в порядке :{self.prepared_data.status_code}'
